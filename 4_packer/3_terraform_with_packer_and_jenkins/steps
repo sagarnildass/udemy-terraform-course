@@ -40,4 +40,14 @@
 
 21. terraform init and say yes 
 
+22. In jenkins, add https://github.com/sagarnildass/udemy-terraform-course to source code mgmt.
+
+23. select execute shell in build.
+
+24. write "./4_packer/3_terraform_with_packer_and_jenkins/scripts/jenkins-run-terraform.sh"
+
+25. Check whether the packer build run was successful. 
+
+26. If it is, run build now on terraform-apply project.
+
 
