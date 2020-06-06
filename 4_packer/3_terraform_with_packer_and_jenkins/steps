@@ -42,6 +42,8 @@
 
 22. In jenkins, add https://github.com/sagarnildass/udemy-terraform-course to source code mgmt.
 
+23. Push the changed code to github
+
 23. select execute shell in build.
 
 24. write "./4_packer/3_terraform_with_packer_and_jenkins/scripts/jenkins-run-terraform.sh"
