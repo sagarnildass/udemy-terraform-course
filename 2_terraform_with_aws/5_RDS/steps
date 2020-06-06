@@ -1,0 +1,45 @@
+1. RDS stands for Relational Database Services
+
+2. It is a managed database solution.
+
+   a) You can easily setup replication (high availability)
+
+   b) Automated Snapshots
+
+   c) Automated security updates
+
+   d) Easy instance replacement (for vertical scaling)
+
+3. Supported DBs are
+
+   a) MySQl
+   b) MariaDB
+   c) PostGreSql
+   d) Microsoft SQL
+   e) Oracle
+
+4. Steps:
+
+a) Create a Subnet group - Allows you to specify in what subnets the database will be in (e.g ap-south-1a or ap-south-1b)
+
+b) Create a parameter group - Allows you to specify parameters to change settings in the database.
+
+c) Create a security group - Allows incoming traffic to the RDS instance.
+
+d) Create the RDS instance.
+
+5. As we will use private subnets for this, the RDS will be accessible from other instances within the same subnet but not from the internet.
+
+Steps
+
+1. terraform apply -var RDS_PASSWORD=myrandompassword
+
+2. ssh into the example instance
+
+3. sudo apt-get install mysql-client
+
+4. Connect to db: mysql -u root -h mariadb.ciqzngdqoetn.ap-south-1.rds.amazonaws.com -p"myrandompassword" (get the db instance name from the output)
+
+
+
+

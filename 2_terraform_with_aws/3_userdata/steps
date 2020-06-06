@@ -1,0 +1,17 @@
+1. Userdata can be used for any customization at launch.
+
+   a) You can install any software
+
+   b) Prepare the instance to join a cluster like consul cluster, ECS cluster (docker orchestration).
+
+   c) Execute commands or scripts
+
+   d) Mount volumes
+
+2. Userdata is only excuted during the creation of the instance, not when the instance reboots
+
+3. Terraform allows you to add userdata to the aws_instance resource.
+
+   a) Just as a string for simple commands
+
+   b) Using templates (for more complex instructions)

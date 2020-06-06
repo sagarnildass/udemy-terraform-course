@@ -1,0 +1,21 @@
+1. The t2 micro comes with 8gb EBS storage. In our next example, we will add an extra EBS storage volume
+
+2. Extra volumes can be used for the log files, or any real data that is put on the instance.
+
+3. We can do this by adding a resource called "aws_ebs_volume" and attach it to the instance by the resource "aws_volume_attachment".
+
+4. After terraform apply, ssh into the instance ssh -i mykey -l ubuntu 13.127.202.138 and then sudo -s to root.
+
+5. df -h to see the default EBS. We dont see the other one, as we have to create a file system in order to see it.
+
+6. mkfs.ext4 /dev/xvdh - to create the new file system for the new EBS.
+
+7. Now we have to mount it. We create a new dir mkdir /data and then mount /dev/xvdh /data
+
+8. df -h to see the new EBS
+
+9. vim /etc/fstab and add this line
+
+/dev/xvdh /data ext4 defaults 0 0
+
+10. But if we destroy and relaunch this instance, this new EBS will be gone. We can counter this with userdata which we will see next.

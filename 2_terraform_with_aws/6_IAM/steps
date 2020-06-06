@@ -1,0 +1,21 @@
+1. IAM is AWS' Identity and Access Management
+
+2. It's a service that helps you control access to your AWS resource.
+
+3. In aws, with IAM, we can create
+
+   a) Groups 
+
+   b) Users and
+
+   c) roles
+
+4. Roles can give users / services temporary access that they normally wouldn't have.
+
+5. The roles can be for instance attached to EC2 instances.
+
+   a) From that instance, a user/service can obtain access credentials.
+
+   b) Using those access credentials, the user or service can assume the role, which gives them permission to do something.
+
+

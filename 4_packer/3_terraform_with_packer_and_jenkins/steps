@@ -1,0 +1,43 @@
+1. terraform init
+
+2. ssh-keygen -f mykey
+
+3. terraform apply - it is only going to create the jenkins machine and not the app
+
+4. ssh to jenkins instance
+
+5. ps aux | grep jenkins - you will see jenkins not yet running
+
+6. tail -f /var/log/cloud-init-output.log - to see the logs and we see jenkins is getting installed.
+
+7. Once jenkins is up, go to the ip address of jenkins (obtained in step 3) at port 8080
+
+8. It will show you where pwd is saved, login with that and install required plugins
+
+9. Once it is done, create first admin user
+
+10. Keep default ip in the next page and setup is done. You will see the home screen of jenkins
+
+11. Create a new job
+
+12. Enter "packer-build" as the item name and choose freestyle project.
+
+13. Select git repo : https://github.com/wardviaene/packer-demo
+
+14. Fork this repo and make changes in zone and push.
+
+15. Enter this new forked and changed repo in jenkins source code mgmt.
+
+16. Select "execute shell" in build state and enter "./jenkins-terraform.sh" in the box.
+
+17. Save it.
+
+18. click build now.
+
+19. After the build is done, click new item name it terraform-apply and choose freestyle project.
+
+20. uncomment the code in backend.tf in local and change the bucket name to the bucket obtained from terraform output.
+
+21. terraform init and say yes 
+
+

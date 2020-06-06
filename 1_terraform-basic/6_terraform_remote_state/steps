@@ -1,0 +1,70 @@
+1. Terraform keeps the remote state of the infrastructure in a file called terraform.tfstate.
+
+2. There's also a backup of the previous state in a file called terraform.tfstate.backup
+
+3. When you execute terraform apply, a new terraform.tfstate and a backup is written.
+
+4. This is how terraform keeps track of remote state
+
+5. Local state works well in the beginning, but when your project gets bigger, you might want to store the state remote.
+
+6. The terraform state can be saved remote, using the backend functionality in terraform. The default backend is the local backend (local terraform.tfstate file).
+
+7. Other backends include:
+
+   a) s3 (with a locking mechanism using dynamodb)
+
+   b) consul (with locking)
+
+   c) terraform enterprise (commercial solution)
+
+8. Using the backend functionality has its benefits:
+
+   a) When working as a team, it allows for collaboration. Allows for the remote state to be available for the whole team.
+
+   b) The state file is also not saved locally now. Possible sensitive information is now only stored in remote state.
+
+   c) Some backends will also allow remote operations.The terraform apply will then run completely remote. These are called enhanced backends.
+
+
+9. There are 2 steps to configure a remote state.
+
+   a) Add the backend code to a tf file.
+
+   b) Run the initialization process.
+
+e.g 
+
+terraform {
+
+   backend "s3" {
+
+    bucket = "mybucket"
+    key = "terraform/myproject"
+    region="ap-south-1"
+
+  }
+
+}
+
+
+10. When using a s3 remote state, it is also best to configure the AWS credentials using aws-configure.
+
+11. Then run terraform init
+
+12. Using a remote store for the terraform state will ensure that you always have the latest version of the state. It avoids having to commit and push the 
+terraform.tfstate to version control.
+
+13. Demo:
+
+A) We create a s3 bucket.
+
+B) We run aws-configure in cmd line.
+
+C) Copy all the files from demo 4 and create a new file backend.tf
+
+D) Run terraform init and terraform apply. You will see that the bucket got populated.
+
+
+
+

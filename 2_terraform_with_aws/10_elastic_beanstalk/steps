@@ -1,0 +1,43 @@
+1. EBS is AWS's Platform as a Service (PaaS) solution.
+
+2. It's a platform where you launch your app without having to maintain the underlying infrastructure.
+
+3. You are still responsible for the ec2 instances, but AWS will provide you with updates you can apply.
+
+4. Updates can be applied manually or automatically.
+
+5. The ec2 instances run amazon linux.
+
+6. EBS can handle application scaling for you.
+
+7. You can schedule scaling events or enable autoscaling based on a metric.
+
+8. It's similar to heroku.
+
+9. You can have an application running with just a few clicks using the aws console or using the elasticbeanstalk resource in terraform.
+
+10. When you deploy an elastic beanstalk env, you will get a CNAME (hostname) that you can use as a endpoint.
+
+11. You can use route 53 to point your domain to that cname.
+
+12. Once EBS is running, you can deploy your application in it using the EB command line utility.
+
+Steps
+
+1. terraform apply
+
+2. terraform output - copy the output and paste it in web browser. You will see the app running
+
+3. git clone https://github.com/wardviaene/eb-php-example
+
+4. Install eb cli
+
+5. go to eb-php-example dir
+
+6. eb init (press 1 for app)
+
+7. eb deploy
+
+8. Refresh your app url received previously and you will see the new app running.
+
+

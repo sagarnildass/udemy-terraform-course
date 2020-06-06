@@ -1,0 +1,9 @@
+1. Packer is a tool to build AMIs
+
+2. Previously to install softwares, we used terraform with shell commands. The alternative is packer.
+
+3. Packer is a commandline tool that can build AWS AMIs based on template.
+
+4. Instead of installing software after booting up the instance, you can create an AMI with all the necessary softwares on. This can spped up the boot time of instances.
+
+5. One alternative is docker. We can also build AMIs with docker.

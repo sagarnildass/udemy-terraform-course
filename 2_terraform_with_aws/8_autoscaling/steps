@@ -1,0 +1,50 @@
+1. In aws, autoscaling groups are created to automatically add/remove instances when certain thresholds are reached.
+
+   e.g: Your app layer can be scaled out when you have more visitors.
+
+2. To set up autoscaling in AWS, you need to set up at least 2 resources:
+
+   a) An aws launch configuration
+
+      -Specifies the properties of the instance to be launched (AMI id, security group etc)
+
+   b) An autoscaling group
+
+      -Specifies the scaling properties (min instances, max instances, health checks etc)
+
+3. Once the autoscaling group is setup, you can create autoscaling properties.
+
+   a) A policy is triggered based on a threshold (cloud watch alarm).
+
+   b) An adjustment will be executed.
+
+      - e.g. If the average CPU utilization is more than 20%, then scale up by 1+ instances.
+             If the average CPU utilization is less than 5%, then scale down by 1- instances.
+
+4. If you want to receive an alert (email) when autoscaling is invoked, need to create a SNS topic (Simple Notification Service)
+
+5. That SNS topic needs to be attached to the autoscaling group.
+
+Steps
+
+1. terraform apply
+
+2. ssh
+
+3. sudo apt-get install stress (to generate logs)
+
+4. stress --cpu 2 --timeout 300
+
+5. go to ec2 and see monitoring. it will trigger alarm when it hits 30%
+
+7. go to cloudwatch and see that an alarm has been raised.
+
+8. go to ec2 and see that the 2nd instance has been started.
+
+9. After 5 mins, the 2nd alarm will be triggered as the CPU utilization will go down below 5% and then 1 instance will be terminated.
+
+
+
+
+
+

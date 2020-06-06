@@ -1,0 +1,15 @@
+1. For certain providers like aws, terraform provides data sources.
+
+2. Data sources provide you with dynamic information.
+
+   a) A lot of data is avaliable by aws in a structured format using their API.
+
+   b) Terraform also exposes this info using data sources.
+
+3. Examples - List of AMIs, list of availability zones.
+
+4. Another great example is the datasource that gives you all ip addresses in use by AWS. This is great if you want to filter traffic based on an AWS region.
+
+5. Filtering traffic can also be done using "security groups". Incoming and outgoing traffic can be filtered by protocol, ip range and port.
+
+6. When we run terraform apply, we will see that a security group is created with the mentioned protocol.

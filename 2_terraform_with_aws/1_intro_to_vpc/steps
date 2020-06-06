@@ -1,0 +1,50 @@
+VPC - Virtual Private Connection
+
+1. In aws, you have a default VPC to launch instances in.
+
+2. Up until now, we used this default VPC.
+
+3. VPCs isolate the instances at a network level. It's like your own private network in the cloud.
+
+4. Best practice is to always launch instances in a VPC.
+
+5. For smaller to medium setups, one VPC (per region) will be suitable for your needs.
+
+6. An instance launched in one vpc can never communicate with an instance in another VPC using their private ip addresses. They could commmunicate still,
+
+but using public ip addresses (not recommended). But we can also link two VPCs, called peering.
+
+Private Subnets
+
+1. Whenever we are going to set up a vpc, we are going to see that the ip addresses to be used are all private subnets.
+
+2. These ip addresses cannot be used over internet. They are only to used privately within VPC or a home/office network.
+
+3. There are only a few private subnets.
+
+Range                From                  To
+10.0.0.0/8           10.0.0.0              10.255.255.255
+172.16.0.0/12        172.16.0.0            172.31.255.255
+192.168.0.0/16       192.168.0.0           192.168.255.255            
+
+
+4. Every availability zone has its own public and private subnets.
+
+5. All the public subnets are connected to an internet gateway. These instances will also have a public ip address, allowing them to be reachable from the internet.
+
+6. Instances launched in the private subnets dont get a public ip address, so they will not be reachable from the internet. To make them connect to the outside world, 
+we use NAT gateways. But only from inside to outside but not the other way round.
+
+7. Typically public subnets are used for internet facing apps/services.
+
+8. And private subnets are used for databases, caching services, backends etc.
+
+9. If you use a load balancer, you will typically put the LB in the public subnets and the instances serving an application in the private subnets.
+
+
+
+10. Now we want to launch the instance in our newly created VPC using a keypair that will be uploaded by terraform.
+
+11. We want a new security group for this instance. A security group is just like a firewall
+
+

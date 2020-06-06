@@ -1,0 +1,37 @@
+1. There are 2 ways to provision software
+
+   a) Build own custom AMI and bundle software with the image - Packer is a great tool to do this
+
+   b) Another way is to boot standardized amis and then install the sw you need.
+ 
+      - We can do so using file uploads, remote exec, automation tools like puppet, chef, ansible.
+
+2. Currently Chef is integrated within terraform. You can add chef commands.
+
+3. You can run puppet-agent using remote exec.
+
+4. For ansible, we can first run terraform and output the ip addresses, then run ansible-playbook on those hosts.
+   
+   a) This can be automated in a workflow script.
+
+   b) There are 3rd party initiatives integrating ansible with terraform.
+
+5. File uploads - Can be done with a "provisioner" keyword mentioning source and destination within the "resource" declaration. It can be used in conjunction to remote exec to execute a 
+script file. The provisioner may use ssh.
+
+6. To override the ssh defaults, you can use the "connection" keyword. The default connection type is ssh. When spinning up instances, 
+ec2-user is the default user for amazon linux and ubuntu for ubuntu linux. Typically on aws, we will use ssh-keypairs. For this, we need
+another "resource" called "aws_key_pair" with a key_name and a public_key. And then the private key will be used to login.
+
+7. After getting in, we will execute the script using remote-exec
+
+8. For generating the keys we use ssh-keygen -f mykey -> This will generate mykey and mykey.pub
+
+9. Next we open aws and go to VPC. Then go to security group and find the default one.For this we go to edit inbound rules and allow all tcp traffic for my ip.
+
+10. Now here's where the lecture is wrong. They are using an user called ubuntu but that does not exist in my aws. So I created an user called ubuntu
+and added him to the group terraform-administrators and then added this user's access key and secret key instead and then terraform apply. Voila!
+
+
+
+

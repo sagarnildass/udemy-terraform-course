@@ -1,0 +1,23 @@
+1. The template provider can help creating customized configuration file.
+
+2. You can build templates based on variables from terraform resource attributes e.g a public ip address
+
+3. The result is a string that can be used as a terraform variable.
+
+4. In AWS, you can pass commands that need to be executed when the instance is first started. In aws, this is called user-data.
+
+5. If you want to pass user-data that depends on other info in terraform (e.g. ip address), you can use the provider template.
+
+6. First we create a template file.
+
+7. Then you create a template file resource that will read the template file ${myip} with the ip address of the aws instance created by terraform.
+
+8. Then we can use the template file resource when creating a new instance.
+
+9. When terraform runs, it will see that first it needs to spin up the database1 instance, then generate the template and only then spin up the web instance.
+
+10. The web instance will have the template injected in the user-data and when it launches, the user-data will create a file /etc/myapp.config with the ip address of the database.
+
+
+
+

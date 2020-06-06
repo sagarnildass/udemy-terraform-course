@@ -1,0 +1,41 @@
+1. Now that we have autoscaled instances, we might want to put a load balancer in front of it.
+
+2. The AWS elastic load balancer (ELB) automatically distributes incoming traffic across multiple instances.
+
+3. The ELB itself scales when we receive more traffic.
+
+4. The ELB will healthcheck your instances.
+
+5. If an instance fails its healthcheck, no traffic will be sent to it.
+
+6. The ELB can also be used as a SSL terminator
+
+   a) It can offload the encryption away from the ec2 instances.
+
+   b) AWS can even manage the SSL certificates for you.
+
+7. ELBs can be spread over multiple availability zones for higher fault tolerances.
+
+8. ELB is comparable to a nginx/haproxy, but it is provided as a service.
+
+9. AWS provides two types of load balancer.
+
+   a) The classic load balancer (ELB) 
+
+      - Routes traffic based on network information.
+
+      - e.g. forwards all traffic from port 80 (HTTP) to port 8080 (Application)
+
+   b) The application load balancer (ALB)
+
+      - Routes traffic based on application information.
+
+      - e.g. can route /api and /websites to different EC2 instances.
+
+Steps
+
+1. terraform apply
+
+2. 
+
+

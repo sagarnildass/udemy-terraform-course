@@ -1,0 +1,34 @@
+A. Create IAM admin user
+
+B. Create terraform file to spin up micro instances.
+
+C. Run terraform apply
+
+A)
+
+1. Opwn AWS, search IAM and add new user called terraform with programmatic access. Add a group called terraform-administrators with admin rights and add user to this group.
+
+2. Go to ec2. Click on security groups. Filter on "default". 
+
+3. For this security group, edit inbound rule and add all traffic from your ip.
+
+
+B)
+
+1. We create an instance.tf file.
+
+2. Here we specify access_key and secret_key we obtained from the last step. We get the ami id for the ec2 instance from : https://cloud-images.ubuntu.com/locator/ec2/.
+
+3. We select ami for ap-south-1 (hvm:ebs)
+
+C)
+
+1. terraform init ( We will always have to run this for a new dir, if new plugins are added or if provider is changed.)
+
+2. terraform apply.
+
+3. To destory this instance, run: terraform destory
+
+4. Another useful command is terraform plan. This will show you what it is planning to do without executing it.
+
+5. Safest way is to write to a output file the plan and then apply from file: terraform plan -out out.terraform and then terraform apply "out.terraform" and then remove this out.terraform file.

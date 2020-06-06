@@ -1,0 +1,15 @@
+# Interpolation
+
+1. In terraform you can interpolate other variables.
+
+2. You can use simple math functions, refer to other variables, or use conditionals.
+
+3. We have been using them throughout the course already.
+
+# Conditionals
+
+1. Interpolations might contain conditionals (if-else)
+
+2. syntax: condition? trueval:falseval
+
+e.g. count = "${var.env == "prod"?2:1}"

@@ -1,0 +1,21 @@
+A) Everything in one file is not great.
+
+B) Use variables to hide secrets
+
+C) Use variables for elements that might change
+
+   - Amis are diff for regions.
+
+D) Use variables to make it easier to reuse terraform files.
+
+E) We are going to split our instance.tf file to 
+
+   1. provider.tf - Here we are going to create the provider with access key, secret key and region but with variables.
+
+   2. vars.tf - Here we are only going to declare the variables access key, secret key and region but not define them.
+
+   3. terraform.tfvars - This is where we are going to put the values. This is the file we are going to put in .gitignore
+
+   4. instance.tf - define the aws resource ec2 specs. Here for the AMI id, we are going to use a lookup
+
+

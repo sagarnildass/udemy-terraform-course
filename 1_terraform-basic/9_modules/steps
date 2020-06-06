@@ -1,0 +1,15 @@
+1. You can use modules to make your terraform more organized.
+
+2. Use third party modules.
+
+3. Reuse parts of your codes.
+
+Demo
+
+1. Run terraform get - to get the module in .terraform folder.
+
+2. Run terraform apply
+
+3. Changed no of servers to 2 (as for my region no c is not supported)
+
+4. It will spin up 3 instances with 3 security groups and install consul.

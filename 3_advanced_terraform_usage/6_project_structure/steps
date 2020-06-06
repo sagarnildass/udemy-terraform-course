@@ -1,0 +1,15 @@
+1. When starting terraform on a production env, you realize that you need a decent project structure.
+
+2. Ideally, you would want to separate production and dev env separately.
+
+3. For complete isolation, it is best to create multiple aws accounts and use one for dev, one for prod and one for billing.
+
+4. Splitting out terraform in multiple projects will also reduce the resources that you'll need to manage during one terraform apply.
+
+5. You can do this in aws organizations.
+
+6. Do first in dev, if everything is successful, apply it in prod.
+
+7. Do terraform actions in the dev/prod dir. Do ssh-keygen separately for each of dev and prod folders.
+
+8. If you indeed have two accounts, you need to edit provider.tf and add a profile of aws cred one for dev and one for prod.

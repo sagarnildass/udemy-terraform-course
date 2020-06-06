@@ -1,0 +1,56 @@
+1. All terraform doc ends with .tf
+
+2. We made a file called main.tf and declared a variable
+
+3. We started from cmd line : terraform console
+
+4. If we type : var.myvar or "${var.myvar}", we get the default value of the variable in the file.
+
+5. Next we created a variable of type map and defined it. We can see it by var.mymap
+
+{
+  "mykey" = "my value"
+}
+
+6. We can also see the value only by writing: var.mymap["mykey"]
+
+7. Next we defined a list "mylist". We can see it in the same way : var.mylist or any individual element like this: var.mylist[1].
+
+8. We can also use terraform's built in functions in the cmd line.
+
+ a)  For seeing the zeroth element of the list : element(var.mylist, 0)
+
+ b)  For getting a slice to see 0th and 1st element: slice(var.mylist, 0,2)
+
+9. Next we make a resource.tf file. Here we write 
+
+provider "aws" {
+}
+
+variable AWS_REGION {
+  type = string
+} 
+
+resource "aws_instance" "example" {
+  ami           = var.AMIS[var.AWS_REGION]
+  instance_type = "t2.micro"
+}
+
+It should start with the key word "resource" followed by the resource type ("aws_instance") and the name ("example"). Then inside, we define the properties. We also declare the provider.
+
+10. We can define static variables inside files with extn .tfvars . We create a file called terraform.tfvars and inside it write: AWS_REGION="ap-south-1" to define the region.
+
+11. But now if we write : terraform console, we will get an error as provider aws is not installed. So we will have to run: terraform init
+
+12. Now we can run terraform console again. Start it and type var.AWS_REGION. You will see the region.
+
+13. We define another variable like :
+
+variable "AMIS" {
+  type = map(string)
+  default = {
+     ap-south-1 = "my ami"
+  } 
+}
+
+12. From the terraform console if we write var.AMIS[var.AWS_REGION], we will get my ami

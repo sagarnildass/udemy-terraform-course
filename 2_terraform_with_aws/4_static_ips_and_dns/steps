@@ -1,0 +1,28 @@
+1. Private ip addresses will be auto assigned to the ec2 instances.
+
+2. Every subnet within a VPC has its own range (e.g. 10.0.1.0 - 10.0.1.255)
+
+3. By specifying the private ips, you can make sure that the ec2 instance always use the same ip address. This ip has to be in the range of the public subnet.
+
+4. To use a public IP address, we can use EIP (Elastic Ips)
+
+5. This is a public static ip address that we can attach to our instance.
+
+Route 53
+
+1. Typically we will not use IP addresses but hostnames. This is where route 53 comes in.
+
+2. We first need to register a domain name using AWS or any other.
+
+3. We can then create a zone in route 53 (e.g. example.com) and add DNS records (server1.example.com).
+
+4. Adding a zone and records can also be done in terraform.
+
+5. When registering domain name, we need to add the AWS nameservers to that domain.
+
+6. Route 53 has a lot of name servers. To know the nameservers for your particular domain, we can use the output resource to output 
+the property "aws_route53_zone.example-com.name_servers
+
+
+
+

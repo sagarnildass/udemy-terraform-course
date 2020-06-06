@@ -1,0 +1,26 @@
+1. Terraform keeps the attributes of all the resources that you create.
+
+   a) E.g - The aws_instance resource has the attribute public_ip
+   
+   b) Those attributes can be queried and outputted.
+
+2. We can use "output" to display the public ip address of an aws resource
+
+resource "aws_instance" "example" {
+  ami           = var.AMIS[var.AWS_REGION]
+  instance_type = "t2.micro"
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.example.private_ip} >> private_ips.txt"
+  }
+}
+
+output "ip" {
+  value = aws_instance.example.public_ip
+}
+
+
+3. Useful for instance to start automation scripts after infrastructure provisioning.
+
+4. You can populate the ip addresses in an ansible host file.
+
+
