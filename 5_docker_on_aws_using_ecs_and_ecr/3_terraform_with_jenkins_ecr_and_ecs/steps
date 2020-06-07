@@ -32,6 +32,35 @@ STEPS:
 
 13. Save this project and create another project: docker-demo-deploy (freestyle)
 
-14. 
+14. click "this project is parameterized" and select "STRING" parameter. Add name as : MYAPP_VERSION
+
+15. choose execute shell in build and add the following lines:
+
+a) cd 5_docker_on_aws_using_ecs_and_ecr/3_terraform_with_jenkins_ecr_and_ecs/
+
+b) scripts/configure-remote-state.sh
+
+c) touch mykey
+
+d) touch mykey.pub
+
+e) terraform apply -target aws_ecs_service.myapp-service -var MYAPP_SERVICE_ENABLE="1" -var MYAPP_VERSION=${MYAPP_VERSION}
+
+16. Save it
+
+17. Go to your local and copy scripts/configure-remote-state.sh into backend.tf and modify the s3 bucket name. 
+
+18. do terraform init, answer yes
+
+19. Go to jenkins and go to docker-demo and configure.
+
+20. Add post build action and choose trigger parameterized build on other project.
+
+a) choose docker-demo-deploy and stable.
+
+b) add predefined parameter : MYAPP_VERSION=${GIT_COMMIT}
+
+21. save and build this
+
 
 
