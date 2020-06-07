@@ -1,0 +1,51 @@
+1. AWS code pipeline is a fully managed continuous delivery service.
+
+2. Codepipeline automates the build, test, deploy pipeline.
+
+3. You can then deploy to EC2/on-prem/lambda/Ecs
+
+4. You can also integrate it with jenkins.
+
+5. Codepipeline integrates with:
+
+   a) codecommit (git)
+
+   b) codebuild: launches ec2 instance to run your test/build phase. Can also do docker builds.
+
+   c) codedeploy: deploys on ec2/lambda/ecs
+
+6. Our setup will use codecommit + codebuild to build a nodeJS docker image with the app code bundled + codedeploy to deploy on ecs.
+
+Steps
+
+1. terraform init
+
+2. terraform apply
+
+3. Now we need to push codes to the git repo (codecommit)
+
+4. download the docker demo repo as a zip file: https://github.com/wardviaene/docker-demo
+
+5. cd docker-demo-master/
+
+6. git remote remove origin (to add the new one)
+
+7. cp ../app/config/* .
+
+8. cp ../app/scripts/create-new-task-def.sh .
+
+9. go to iam in aws and coose ubuntu. 
+
+10. in security creds, upload your public ssh key and copy the access key id.
+
+11. go to code commit, and in the rhs upper corner, click on clone ssh.
+
+12. inside docker-demo folder: git remote add origin ssh://AKIA57O2ZUOL646INODP@git-codecommit.ap-south-1.amazonaws.com/v1/repos/demo (where AKIA57O2ZUOL646INODP is the access key id from step 10)
+
+13. ssh-add ../mykey
+
+14. git add ./*
+
+15. git commit -m "deploy code"
+
+16. 

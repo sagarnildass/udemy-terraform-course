@@ -1,0 +1,9 @@
+1. Terraform modules are a powerful way to reuse codes.
+
+2. You can either use external modules or write modules yourself.
+
+3. External modules can help setting up infrastructures without much effort.
+
+   - When modules are managed by community, you'll get updates and fixes for free.
+
+   - github.com/terraform-aws-modules list terraform modules for AWS.

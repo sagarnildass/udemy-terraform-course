@@ -1,0 +1,13 @@
+1. AWS EKS is amazon elastic container service for kubernetes.
+
+2. Kubernetes is an alternative to AWS ECS.
+
+3. ECS is aws specific, whereas Kubernetes can run on any public cloud provider (or even on premises)
+
+4. They are both great solutions to orchestrate containers.
+
+5. AWS EKS provides managed kubernetes master nodes.
+
+   - There's no master nodes to manage.
+  
+   - The master nodes are multi AZ to provide redundancy.
