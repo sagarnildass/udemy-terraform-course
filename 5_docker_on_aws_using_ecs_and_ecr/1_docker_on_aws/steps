@@ -1,0 +1,49 @@
+1. Just like packer builds AMIs, you can use docker to build docker images.
+
+2. Those images can then be run on any linux host with docker engine installed.
+
+3. The creation of ECR repo can be done using terraform.
+
+4. Dockerizing a simple nodeJS app only needs a few files.
+
+   a) dockerfile
+
+   b) index.js
+
+   c) package.json
+
+5. To build this project, docker build can be used.
+
+6. Docker build can be executed manually or by jenkins.
+
+7. After the docker build process, you have built an image which can run the node js app.
+
+8. You can already run the docker app by executing docker run locally.
+
+   a) Docker can be run locally for development purposes.
+
+9. Instead we are immediately going to push this image to AWS and run this app there.
+
+   a) The first step is to push this locally built images to amazon ECR (the EC2 registry - where docker images can be stored in)
+
+   b) Secondly, we will set up docker cluster (ECS) to run our docker apps.
+
+STEPS:
+
+1. terraform apply
+
+2. git clone https://github.com/wardviaene/docker-demo
+
+3. Copy the ECR url
+
+4. docker build -t 960920920983.dkr.ecr.ap-south-1.amazonaws.com/myapp:1 .
+
+5. aws ecr get-login --no-include-email - either copy the long command outputted by this or simply write `aws ecr get-login --no-include-email`
+
+6. docker push 960920920983.dkr.ecr.ap-south-1.amazonaws.com/myapp:1
+
+7. Go to aws and elastic container service. Under repositories, you can see myapp.
+
+8. In next lecture, we will see how to run this image in ECS.
+
+

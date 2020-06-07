@@ -1,0 +1,37 @@
+1. We will use jenkins to build docker images to be put on ecr and then run the app on ecs.
+
+STEPS:
+
+1. terraform apply
+
+2. login to jenkins machine (ssh): ssh -i mykey ubuntu@13.235.104.131
+
+3. Jenkins is throwing an error: modified the script file jenkins-init and now it works.
+
+4. Get the pwd: cat /var/lib/jenkins/secrets/initialAdminPassword
+
+5. login to jenkins
+
+6. go to manage jenkins: manage plugins: available and search for parameterized trigger pluggin
+
+7. download it and restart jenkins.
+
+8. create new job: docker-demo (freestyle project)
+
+9. use git: https://github.com/wardviaene/docker-demo
+
+10. choose execute shell in build 
+
+11. in the jenkins instance : sudo su - jenkins and the aws-configure and put your creds there.
+
+12. 1st line - docker build -t 960920920983.dkr.ecr.ap-south-1.amazonaws.com/myapp:${GIT_COMMIT} . (we obtained this from terraform output)
+
+    2nd line -  eval "${aws ecr get-login --region ap-south-1}"
+
+    3rd line - docker push 960920920983.dkr.ecr.ap-south-1.amazonaws.com/myapp:${GIT_COMMIT}
+
+13. Save this project and create another project: docker-demo-deploy (freestyle)
+
+14. 
+
+

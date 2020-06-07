@@ -1,0 +1,62 @@
+1. Now that your app is dockerized and uploaded to ECR, you can start the ECS cluster.
+
+2. ECS will manage your docker containers.
+
+3. You just need to start an autoscaling group with a custom AMI.
+
+   a) The custom AMI contains the ECS agent.
+
+4. Once the ECS cluster is online, tasks and services can be started on the cluster.
+
+5. First the ECS cluster needs to be defined in terraform.
+
+6. Then, an autoscaling group launches EC2 instances that will join this cluster.
+
+7. Before the docker app can be launched, a task definition needs to be provided.
+
+8. The task definition describes what docker container to be run on the cluster.
+
+   a) Specifies the docker image in ECR.
+
+   b) Max CPU usage, max memory usage.
+
+   c) Whether container should be linked (e.g. link app container with db container)
+
+   d) Environment variables (e.g. credentials)
+
+   e) Any other container specific definitions.
+
+9. A service definition is going to run a specific amount of containers based on the task definition.
+
+10. A service can be scaled. You can run 1 instance of a container or multiple.
+
+11. You can put ELB in front of a service.
+
+12. You typically run multiple instances of a container, spread over availability zones.
+
+   a) If one container falis, your load balancer stops sending traffic to it.
+
+   b) Running multiple instances with an ELB/ALB allows you to have HA.
+
+STEPS:
+
+1. copy terraform.tfstate from previous demo. make sure the image is still there in ECR.
+
+2. terraform apply
+
+3. ssh as ec2-user: ssh -i mykey 52.66.239.185 -l ec2-user
+
+4. this is the t2 micro that has joined the cluster.
+
+5. sudo -s
+
+6. cat /etc/ecs/ecs.config
+
+5. docker ps : to see the app running
+
+6. curl localhost:3000
+
+7. exit out of ssh and do curl myapp-elb-542642915.ap-south-1.elb.amazonaws.com <- this we got from terraform apply.
+
+
+
