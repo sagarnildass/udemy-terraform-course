@@ -11,3 +11,45 @@
    - There's no master nodes to manage.
   
    - The master nodes are multi AZ to provide redundancy.
+
+   - The master node will scale automatically when necessary.
+
+6. If you'd run your own kubernetes cluster, you'd have to scale it when having more worker nodes.
+
+7. Secure by default : EKS integrates with IAM.
+
+8. EKS is costier than ECS. So for smaller apps, ECS is better.
+
+STEPS
+
+1. terraform init and apply
+
+2. terraform output kubeconfig # save output in ~/.kube/config
+
+3. terraform output kubeconfig > ~/.kube/config (take backup of any old config b4 doing this.)
+
+4. aws eks --region ap-south-1 update-kubeconfig --name terraform-eks-demo
+
+5. terraform output config-map-aws-auth
+
+6. terraform output config-map-aws-auth > config-map-aws-auth.yaml
+
+7. kubectl apply -f config-map-aws-auth.yaml
+
+8. kubectl get nodes --watch (now we should see nodes appearing)
+
+TEST
+
+9. kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
+
+10. kubectl get deployments
+
+11. Now we need to connect to it. And the best way is to create a load balancer: kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+
+12. kubectl get services
+
+13. kubectl describe service/hello-node
+
+14. copy the loadbalancer ingress hostname and go there at port 8080: http://aa3aff771fdc044b8a10d185bbdfe4b3-1972004712.ap-south-1.elb.amazonaws.com:8080/
+
+
