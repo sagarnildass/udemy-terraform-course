@@ -62,5 +62,7 @@ b) add predefined parameter : MYAPP_VERSION=${GIT_COMMIT}
 
 21. save and build this
 
+Did not work
+
 
 
